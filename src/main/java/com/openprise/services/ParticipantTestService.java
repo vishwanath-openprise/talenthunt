@@ -56,7 +56,7 @@ public class ParticipantTestService {
 			int order = 1;
 			for (Question question : qs) {
 				ParticipantQuestion pq = new ParticipantQuestion();
-				pq.setOrder(order);
+				pq.setQuestionOrder(order);
 				pq.setQuestion(question);
 				tp.getQuestions().add(pq);
 				order++;
@@ -139,32 +139,34 @@ public class ParticipantTestService {
 
 	public ParticipantQuestion getNextQuestion() {
 		TestParticipant testParticipant = test.getTest();
-		ParticipantQuestion pq = participantQuestionRepository.findByTestParticipantAndOrder(testParticipant.getId(),
+		ParticipantQuestion pq = participantQuestionRepository.findByTestParticipantAndQuestionOrder(testParticipant,
 				testParticipant.getQuestionIndex() + 1);
-		testParticipant.setQuestionIndex(pq.getOrder());
+		testParticipant.setQuestionIndex(pq.getQuestionOrder());
 		return pq;
 	}
 
 	public ParticipantQuestion getPrevQuestion() {
 		TestParticipant testParticipant = test.getTest();
-		ParticipantQuestion pq = participantQuestionRepository.findByTestParticipantAndOrder(testParticipant.getId(),
+		ParticipantQuestion pq = participantQuestionRepository.findByTestParticipantAndQuestionOrder(testParticipant,
 				testParticipant.getQuestionIndex() - 1);
-		testParticipant.setQuestionIndex(pq.getOrder());
+		testParticipant.setQuestionIndex(pq.getQuestionOrder());
 		return pq;
 	}
 
 	public ParticipantQuestion getNextPendingQuestion(int index) {
 		TestParticipant testParticipant = test.getTest();
-		ParticipantQuestion pq = participantQuestionRepository.findByTestParticipantAndOrderGreaterThanAndAnsweredNot(
-				testParticipant.getId(), testParticipant.getQuestionIndex());
+		ParticipantQuestion pq = participantQuestionRepository
+				.findByTestParticipantAndQuestionOrderGreaterThanAndAnsweredNot(testParticipant,
+						testParticipant.getQuestionIndex(), true);
 		return pq;
 
 	}
 
 	public ParticipantQuestion getPrevPendingQuestion(int index) {
 		TestParticipant testParticipant = test.getTest();
-		ParticipantQuestion pq = participantQuestionRepository.findByTestParticipantAndOrderLessThanAndAnsweredNot(
-				testParticipant.getId(), testParticipant.getQuestionIndex());
+		ParticipantQuestion pq = participantQuestionRepository
+				.findByTestParticipantAndQuestionOrderLessThanAndAnsweredNot(testParticipant,
+						testParticipant.getQuestionIndex(), true);
 		return pq;
 
 	}

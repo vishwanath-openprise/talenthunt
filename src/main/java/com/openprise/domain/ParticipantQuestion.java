@@ -29,14 +29,14 @@ public class ParticipantQuestion {
 	private boolean answered;
 	private boolean evaluated;
 	private boolean valid;
-	private int order;
+	private int questionOrder;
 	
 	public ParticipantQuestion() {
 		super();
 		answered = false;
 		evaluated = false;
 		valid = false;
-		order = 0;
+		questionOrder = 0;
 	}
 	
 	public Integer getId() {
@@ -88,12 +88,12 @@ public class ParticipantQuestion {
 		this.valid = valid;
 	}
 
-	public int getOrder() {
-		return order;
+	public int getQuestionOrder() {
+		return questionOrder;
 	}
 
-	public void setOrder(int order) {
-		this.order = order;
+	public void setQuestionOrder(int questionOrder) {
+		this.questionOrder = questionOrder;
 	}
 
 	public int getAnsweredIndex() {
