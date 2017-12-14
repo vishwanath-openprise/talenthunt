@@ -1,0 +1,17 @@
+# .gitignore for talenthunt
+bin
+target
+
+# web application files
+/web-app/WEB-INF
+
+# IDE support files
+/.classpath
+/.launch
+/.project
+/.settings
+/*.launch
+/*.tmproj
+/ivy*
+/eclipse
+
