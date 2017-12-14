@@ -27,4 +27,8 @@ public class UserTest {
 	public TestParticipant getTest() {
 		return test;
 	}
+	
+	public Participant getUser() {
+		return user;
+	}
 }

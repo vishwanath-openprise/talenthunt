@@ -1,5 +1,6 @@
 package com.openprise.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,17 @@ public class TestParticipant {
 	private List<ParticipantQuestion> questions;
 	private int questionIndex;
 	private Date lastUpdated;
+	private int answered;
+	private int correct;
+	private int skipped;
+	private int total;
+	
+	public TestParticipant() {
+		super();
+		status = TEST_STATUS.REGISTRATION;
+		questions = new ArrayList<ParticipantQuestion>();
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -82,5 +94,37 @@ public class TestParticipant {
 	}
 	public void setLastUpdated(Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
+	}
+
+	public int getAnswered() {
+		return answered;
+	}
+
+	public void setAnswered(int answered) {
+		this.answered = answered;
+	}
+
+	public int getCorrect() {
+		return correct;
+	}
+
+	public void setCorrect(int correct) {
+		this.correct = correct;
+	}
+
+	public int getSkipped() {
+		return skipped;
+	}
+
+	public void setSkipped(int skipped) {
+		this.skipped = skipped;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
 	}
 }

@@ -21,9 +21,23 @@ public class ParticipantQuestion {
 	private Choice answeredOpt;
 	@ManyToOne
 	private Choice correctOpt;
+	
+	private int answeredIndex;
+	
+	private int correctIndex;
+	
 	private boolean answered;
 	private boolean evaluated;
 	private boolean valid;
+	private int order;
+	
+	public ParticipantQuestion() {
+		super();
+		answered = false;
+		evaluated = false;
+		valid = false;
+		order = 0;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -72,6 +86,30 @@ public class ParticipantQuestion {
 	}
 	public void setValid(boolean valid) {
 		this.valid = valid;
+	}
+
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
+	public int getAnsweredIndex() {
+		return answeredIndex;
+	}
+
+	public void setAnsweredIndex(int answeredIndex) {
+		this.answeredIndex = answeredIndex;
+	}
+
+	public int getCorrectIndex() {
+		return correctIndex;
+	}
+
+	public void setCorrectIndex(int correctIndex) {
+		this.correctIndex = correctIndex;
 	}
 
 }
