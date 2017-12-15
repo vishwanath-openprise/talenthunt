@@ -1,0 +1,26 @@
+<div class="text-center">
+  <h2>Available tests</h2>
+</div>
+<div class="separator-div"></div>
+<div class="large-12 small-12 medium-12 animated fadeInLeft" style="margin-top: 15px;">
+  <div *ngFor="let test of availableTests" class="medium-5 small-12 large-3 float-left zoom-in" style="min-width: 350px; margin: 15px;">  
+        <mat-card [ngClass]="getStatusClass(test.status)">
+          <div style="padding: 0.75rem 1.25rem;" class="clear-both">
+            <div class="card-title large-12 small-12 medium-12 clear-both">
+                <div class="small-6 medium-6 large-6 float-left">
+                  <h4>{{test.name}}</h4>
+                </div>
+                <div class="small-6 medium-6 large-6 float-left" style="padding: 5px;">
+                    <strong class="float-right">
+                        {{test.status}}
+                    </strong>
+                </div>
+            </div>
+            <mat-card-content>
+              <p>The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.</p>
+            </mat-card-content>
+            <button class="float-right" mat-raised-button [routerLink]="['instructions', test.id]">START</button>
+          </div>
+      </mat-card>
+  </div>
+</div>
