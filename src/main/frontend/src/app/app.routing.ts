@@ -11,7 +11,7 @@ import { AdminLoginComponent } from './admin/login/admin_login.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin_dashboard.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'register', component: RegisterationComponent},
   {
     path: 'dashboard',
