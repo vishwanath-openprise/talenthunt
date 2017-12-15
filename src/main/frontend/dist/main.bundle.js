@@ -428,7 +428,7 @@ exports = module.exports = __webpack_require__(24)(false);
 
 
 // module
-exports.push([module.i, "/*\nlogin and registration styles\n*/\n[type='password']{\n    height: auto;\n    box-shadow: initial;\n    margin: 0;\n}\n[type='password']:focus{\n    background: 0 0;\n    box-shadow: initial;\n    border: 0;\n}\n.mat-input-container{\n    width: 100%;\n}\n.mat-card{\n    background-color: rgba(255,255,255,0.65);\n}\n/*.logo{\n    background: url('../../assets/images/Openprise_Logo.png') no-repeat;\n    background-size: 100%;\n    height: 60px;\n}*/\n.op-logo{\n    margin-bottom: 15px;\n}\n.mat-raised-button.mat-primary{\n    font-size: 1em;\n    padding: 3px;\n    font-weight: bold;\n}\n.small-icons{\n    position: absolute;\n    top: 0;\n    right: 0;\n    font-size: 26px;\n    color: #3f51b5;\n}\n\n.mat-icon-button{\n    width: auto;\n    font-size: 17px;\n    color: #3f51b5;\n    height: 35px;\n    margin-top: 10px;\n}\n\na{\n    font-size: 1.3em;\n}", ""]);
+exports.push([module.i, "/*\nlogin and registration styles\n*/\n\n.middle-box{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    height: 100%;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n\n.middle-box>div{\n    max-width: 440px;\n}\n\n\n[type='password']{\n    height: auto;\n    box-shadow: initial;\n    margin: 0;\n}\n[type='password']:focus{\n    background: 0 0;\n    box-shadow: initial;\n    border: 0;\n}\n.mat-input-container{\n    width: 100%;\n}\n.mat-card{\n    background-color: rgba(255,255,255,0.65);\n}\n/*.logo{\n    background: url('../../assets/images/Openprise_Logo.png') no-repeat;\n    background-size: 100%;\n    height: 60px;\n}*/\n.op-logo{\n    margin-bottom: 15px;\n}\n.mat-raised-button.mat-primary{\n    font-size: 1em;\n    padding: 3px;\n    font-weight: bold;\n}\n.small-icons{\n    position: absolute;\n    top: 0;\n    right: 0;\n    font-size: 26px;\n    color: #3f51b5;\n}\n\n.mat-icon-button{\n    width: auto;\n    font-size: 17px;\n    color: #3f51b5;\n    height: 35px;\n    margin-top: 10px;\n}\n\na{\n    font-size: 1.3em;\n}\n\n.card-title{\n    color: #686868;\n}", ""]);
 
 // exports
 
@@ -839,7 +839,7 @@ module.exports = "<div class=\"login-img\">\n    <div class=\"animated fadeInLef
 /***/ 378:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"top-bar\">\n  <div class=\"row\">\n\t\t<div class=\"top-bar-left\">\n\t\t\t<ul class=\"menu\">\n\t\t\t\t<img src=\"./assets/images/openprise.png\" style=\"width: 250px;\">\n\t\t\t</ul>\n\t\t</div>\t  \n\t\t<div class=\"top-bar-right\">\n\t\t\t<ul class=\"menu\">\n\t\t\t\t<li class=\"menu-text\"><a routerLink=\"/login\">Logout</a></li>\n\t\t\t</ul>\n\t\t</div>\n\n   </div> \n</div>\n<div class=\"row row-content\">\n\t<router-outlet></router-outlet>\n</div>"
+module.exports = "<div class=\"top-bar\">\n  <div class=\"row\">\n\t\t<div class=\"top-bar-left\">\n\t\t\t<ul class=\"menu\">\n\t\t\t\t<img src=\"./assets/images/openprise.png\" style=\"width: 250px;\">\n\t\t\t</ul>\n\t\t</div>\t  \n\t\t<div class=\"top-bar-right\">\n\t\t\t<ul class=\"menu\">\n\t\t\t\t<li class=\"menu-text\"><a href=\"logout\">Logout</a></li>\n\t\t\t</ul>\n\t\t</div>\n\n   </div> \n</div>\n<div class=\"row row-content\">\n\t<router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 

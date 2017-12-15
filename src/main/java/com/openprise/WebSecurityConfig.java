@@ -25,6 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/*.js").permitAll()
 				.antMatchers("/**.css").permitAll()
 				.antMatchers("/**.png").permitAll()
+				.antMatchers("/assets/images/Openprise_Logo.png").permitAll()
 				.antMatchers("/**.jpg").permitAll()
 				.antMatchers("/**.gif").permitAll()
 				.antMatchers("/**.woff2").permitAll()
@@ -33,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**.js.map").permitAll()
 				.anyRequest().authenticated()
 				.and().csrf().disable()
-				.formLogin().loginPage("/login_old").defaultSuccessUrl("/dashboard", true).permitAll().and().logout().permitAll();
+				.formLogin().loginPage("/login_old").defaultSuccessUrl("/dashboard", true).permitAll().and().logout().logoutSuccessUrl("/").permitAll();
 		 http.authorizeRequests().antMatchers("/").permitAll();
 	}
 

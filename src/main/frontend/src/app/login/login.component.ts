@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
           result => {
           	console.log("result",result)
           },
-          error {
-            if(result.status == 404){
-              this.router.navigate(['dashboard']);
-            }
+        error =>{
+          if(error.status == 404){
+            this.router.navigate(['dashboard']);
           }
+        }
       );
   }
 
