@@ -23,9 +23,9 @@ public class Participant {
     
     private String password;
     
-    private int numberOfSuccessfulLogins;
+    private int numberOfSuccessfulLogins = 0;
     
-    private int numberOfFailureLogins;
+    private int numberOfFailureLogins = 0;
     
     @OneToMany
     private List<TestParticipant> tests;

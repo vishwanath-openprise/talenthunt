@@ -52,6 +52,63 @@ public class TestController {
 	}
 	
 	@GET
+	@Path("/{participantTestId}/resume")
+	public ParticipantQuestion resumeTest(long participantTestId) {
+		ParticipantQuestion question = service.resumeTest(participantTestId);
+		return question;
+	}
+	
+	@GET
+	@Path("/{qId}/skipAnAnswer/{oid}")
+	public ParticipantQuestion skipAnAnswer(int questionIndex) {
+		ParticipantQuestion question = service.skipAnAnswer(questionIndex);
+		return question;
+	}
+
+	
+	@GET
+	@Path("/{qId}/submitAnAnswer/{oid}")
+	public ParticipantQuestion submitAnAnswer(int questionIndex, int optionIndex) {
+		ParticipantQuestion question = service.submitAnAnswer(questionIndex, optionIndex);
+		return question;
+	}
+
+	@GET
+	@Path("/getNextQuestion")
+	public ParticipantQuestion getNextQuestion() {
+		ParticipantQuestion question = service.getNextQuestion();
+		return question;
+	}
+	
+	@GET
+	@Path("/getPrevQuestion")
+	public ParticipantQuestion getPrevQuestion() {
+		ParticipantQuestion question = service.getPrevQuestion();
+		return question;
+	}
+	
+	@GET
+	@Path("/getNextPendingQuestion/{index}")
+	public ParticipantQuestion getNextPendingQuestion(@PathParam("index") int index) {
+		ParticipantQuestion question = service.getNextPendingQuestion(index);
+		return question;
+	}
+
+	@GET
+	@Path("/getPrevPendingQuestion/{index}")
+	public ParticipantQuestion getPrevPendingQuestion(@PathParam("index") int index) {
+		ParticipantQuestion question = service.getPrevPendingQuestion(index);
+		return question;
+	}
+	
+	@GET
+	@Path("/getQuestionAt/{index}")
+	public ParticipantQuestion getQuestionAt(@PathParam("index") int index) {
+		ParticipantQuestion question = service.getQuestionAt(index);
+		return question;
+	}
+	
+	@GET
 	@Path("/{participantTestId}/end")
 	public @ResponseBody String end() {
 		service.endTest();

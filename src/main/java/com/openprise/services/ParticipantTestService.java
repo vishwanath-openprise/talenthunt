@@ -137,6 +137,16 @@ public class ParticipantTestService {
 		return getNextQuestion();
 	}
 
+	public ParticipantQuestion skipAnAnswer(int questionIndex) {
+		TestParticipant testParticipant = test.getTest();
+		ParticipantQuestion question = testParticipant.getQuestions().get(testParticipant.getQuestionIndex());
+		question.setAnswered(false);
+		participantQuestionRepository.save(question);
+		participantTestRepository.save(testParticipant);
+		return getNextQuestion();
+	}
+
+	
 	public ParticipantQuestion getNextQuestion() {
 		TestParticipant testParticipant = test.getTest();
 		ParticipantQuestion pq = participantQuestionRepository.findByTestParticipantAndQuestionOrder(testParticipant,

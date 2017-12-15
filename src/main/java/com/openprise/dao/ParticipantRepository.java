@@ -7,5 +7,5 @@ import com.openprise.domain.Participant;
 public interface ParticipantRepository  extends CrudRepository<Participant, Long> {
 
 	Participant findByMobileAndPassword(String mobile, String password);
-	
+	Participant findByMobile(String mobile);
 }

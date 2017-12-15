@@ -26,9 +26,9 @@ public class ParticipantQuestion {
 	
 	private int correctIndex;
 	
-	private boolean answered;
-	private boolean evaluated;
-	private boolean valid;
+	private boolean answered = false;
+	private boolean evaluated = false;
+	private boolean valid = false;
 	private int questionOrder;
 	
 	public ParticipantQuestion() {

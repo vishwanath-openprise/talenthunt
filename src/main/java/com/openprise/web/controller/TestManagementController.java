@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.openprise.dao.TestRepository;
+import com.openprise.domain.Choice;
 import com.openprise.domain.Question;
 import com.openprise.domain.Test;
+import com.openprise.services.QuestionService;
 import com.openprise.services.TestService;
 
 @Controller    // This means that this class is a Controller
@@ -55,14 +57,27 @@ public class TestManagementController {
 	}
 	
 	@POST
-	@Path("/{id}/add")
+	@Path("/{id}/addQuestion")
 	public @ResponseBody Question addQuestion(@PathParam("id") long id, @RequestBody Question question) {
 		return service.addQuestion(id, question);
 	}
+	
+	@POST
+	@Path("/{qid}/addChoice")
+	public @ResponseBody Question addChoice(@PathParam("id") long id, @RequestBody Choice choice) {
+		return service.addOption(id, choice);
+	}
+	
+	@POST
+	@Path("/{qid}/addChoices")
+	public @ResponseBody Question addChoice(@PathParam("id") long id, @RequestBody Choice[] choices) {
+		return service.addOptions(id, choices);
+	}
+	
 
 	@DELETE
 	@Path("/{id}/{qId}")
-	public @ResponseBody String addQuestion(@PathParam("id") long id, @PathParam("qId") long qId) {
+	public @ResponseBody String deleteQuestion(@PathParam("id") long id, @PathParam("qId") long qId) {
 		service.removeQuestion(id, qId);
 		return "DONE";
 	}

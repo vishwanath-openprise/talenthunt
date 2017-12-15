@@ -19,17 +19,21 @@ export class DashboardComponent implements OnInit {
 
   getStatusClass(status):String{
     switch (status){
-      case 'Active': 
+      case 'PLANNED': 
+        return 'planned-status';
+      case 'REGISTRATION': 
         return 'active-status';
-      case 'Disabled':
+      case 'COMPLETED': 
+        return 'completed-status';
+      case 'INACTIVE':
         return 'disbale-status';
-      case 'Progress':
+      case 'IN_PROGRESS':
         return 'progress-status';        
     }
   }
 
   getHeroes(): Promise<Hero[]> {
-        return this.http.get(`./assets/tests.json`)
+        return this.http.get(`test/all`)
                .toPromise()
                .then(response => response.json() as Hero[]);
   }

@@ -1,6 +1,7 @@
 package com.openprise.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.openprise.dao.QuestionRepository;
 import com.openprise.dao.TestRepository;
+import com.openprise.domain.Choice;
 import com.openprise.domain.Question;
 import com.openprise.domain.TEST_STATUS;
 import com.openprise.domain.Test;
@@ -63,5 +65,31 @@ public class TestService {
 		} else {
 
 		}
+	}
+
+	public Question addOptions(long questionId, Choice[] choices) {
+		Question q = questionRepository.findOne(questionId);
+		if (q != null) {
+			if (q.getOptions() == null) {
+				q.setOptions(new ArrayList<Choice>());
+			}
+			for(Choice c: choices) {
+				q.getOptions().add(c);
+			}
+			questionRepository.save(q);
+		}
+		return q;
+	}
+
+	public Question addOption(long questionId, Choice c) {
+		Question q = questionRepository.findOne(questionId);
+		if (q != null) {
+			if (q.getOptions() == null) {
+				q.setOptions(new ArrayList<Choice>());
+			}
+			q.getOptions().add(c);
+			questionRepository.save(q);
+		}
+		return q;
 	}
 }

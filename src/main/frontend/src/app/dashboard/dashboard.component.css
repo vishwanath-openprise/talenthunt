@@ -73,6 +73,14 @@ h2{
     background-color: #f86c6b;
 }
 
+.completed-status{
+    background-color: #52BE80;
+}
+
+.planned-status{
+    background-color: #B2BABB;
+}
+
 .progress-status{
     background-color: #f8cb00;
 }

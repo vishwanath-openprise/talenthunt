@@ -103,16 +103,20 @@ var DashboardComponent = (function () {
     };
     DashboardComponent.prototype.getStatusClass = function (status) {
         switch (status) {
-            case 'Active':
-                return 'active-status';
-            case 'Disabled':
+            case 'PLANNED':
                 return 'disbale-status';
-            case 'Progress':
+            case 'REGISTRATION':
+                return 'active-status';
+            case 'COMPLETED':
+                return 'disbale-status';
+            case 'INACTIVE':
+                return 'disbale-status';
+            case 'IN_PROGRESS':
                 return 'progress-status';
         }
     };
     DashboardComponent.prototype.getHeroes = function () {
-        return this.http.get("./assets/tests.json")
+        return this.http.get("test/all")
             .toPromise()
             .then(function (response) { return response.json(); });
     };
@@ -818,7 +822,7 @@ module.exports = "<router-outlet></router-outlet>\n"
 /***/ 375:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text-center\">\n  <h2>Available tests</h2>\n</div>\n<div class=\"separator-div\"></div>\n<div class=\"large-12 small-12 medium-12 animated fadeInLeft\" style=\"margin-top: 15px;\">\n  <div *ngFor=\"let test of availableTests\" class=\"medium-5 small-12 large-3 float-left zoom-in\" style=\"min-width: 350px; margin: 15px;\">  \n        <mat-card [ngClass]=\"getStatusClass(test.status)\">\n          <div style=\"padding: 0.75rem 1.25rem;\" class=\"clear-both\">\n            <div class=\"card-title large-12 small-12 medium-12 clear-both\">\n                <div class=\"small-6 medium-6 large-6 float-left\">\n                  <h4>{{test.name}}</h4>\n                </div>\n                <div class=\"small-6 medium-6 large-6 float-left\" style=\"padding: 5px;\">\n                    <strong class=\"float-right\">\n                        {{test.status}}\n                    </strong>\n                </div>\n            </div>\n            <mat-card-content>\n              <p>The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.</p>\n            </mat-card-content>\n            <button class=\"float-right\" mat-raised-button [routerLink]=\"['instructions', test.id]\">START</button>\n          </div>\n      </mat-card>\n  </div>\n</div>"
+module.exports = "<div class=\"text-center\">\n  <h2>Available tests</h2>\n</div>\n<div class=\"separator-div\"></div>\n<div class=\"large-12 small-12 medium-12 animated fadeInLeft\" style=\"margin-top: 15px;\">\n  <div *ngFor=\"let test of availableTests\" class=\"medium-5 small-12 large-3 float-left zoom-in\" style=\"min-width: 350px; margin: 15px;\">  \n        <mat-card [ngClass]=\"getStatusClass(test.status)\">\n          <div style=\"padding: 0.75rem 1.25rem;\" class=\"clear-both\">\n            <div class=\"card-title large-12 small-12 medium-12 clear-both\">\n                <div class=\"small-6 medium-6 large-6 float-left\">\n                  <h4>{{test.test.name}}</h4>\n                </div>\n                <div class=\"small-6 medium-6 large-6 float-left\" style=\"padding: 5px;\">\n                    <strong class=\"float-right\">\n                        {{test.status}}\n                    </strong>\n                </div>\n            </div>\n            <mat-card-content>\n              <p>{{test.test.description}}</p>\n              <p>No of questions: {{test.noOfQuestions}}</p>\n            </mat-card-content>\n            <button class=\"float-right\" mat-raised-button [routerLink]=\"['instructions', test.id]\">START</button>\n          </div>\n      </mat-card>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -846,7 +850,7 @@ module.exports = "<div class=\"top-bar\">\n  <div class=\"row\">\n\t\t<div class
 /***/ 379:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-img\">\n    <div style=\"display: flex; align-items: center;height: 100%;justify-content: center;\" class=\"animated fadeInLeft\">\n        <div class=\"medium-7 small-12 large-3\" style=\"min-width: 465px; max-width: 600px;\">    \n            <img src=\"./assets/images/Openprise_Logo.png\" class=\"op-logo\">\n            <mat-card>\n                <h2 style=\"text-align: center\">\n                    <a routerLink=\"/login\" title=\"Back to login\"><i class=\"material-icons\">arrow_back</i></a>\n                    Register\n                </h2>\n                <form>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Full name\" autofocus>\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Mobile (Used as Login ID)\">\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Email\">\n                    </mat-form-field>                                        \n                    <mat-form-field>\n                        <input matInput placeholder=\"Password\" type=\"Password\">\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Confirm password\" type=\"Password\">\n                    </mat-form-field>\n                    <button mat-raised-button routerLink=\"\"\n                        color=\"primary\" style=\"width: 100%\">Register\n                    </button>\n                </form>\n            </mat-card>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"login-img\">\n    <div class=\"animated fadeInLeft middle-box\">\n        <div class=\"medium-12 small-12 large-12\">    \n            <img src=\"./assets/images/Openprise_Logo.png\" class=\"op-logo\">\n            <mat-card>\n                <h2 class=\"text-center card-title\">\n                    <a routerLink=\"/login\" title=\"Back to login\"><i class=\"material-icons\">arrow_back</i></a>\n                    Register\n                </h2>\n                <form>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Full name\" autofocus>\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Mobile\">\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Email\">\n                    </mat-form-field>                                        \n                    <mat-form-field>\n                        <input matInput placeholder=\"Password\" type=\"Password\">\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Confirm password\" type=\"Password\">\n                    </mat-form-field>\n                    <button mat-raised-button routerLink=\"\"\n                        color=\"primary\" style=\"width: 100%\">Register\n                    </button>\n                </form>\n            </mat-card>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 

@@ -1,5 +1,6 @@
 package com.openprise.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Test {
@@ -18,14 +18,15 @@ public class Test {
     private Integer id;
 
 	private String name;
-	private long duration;
-	private Date validFrom;
+	private String description = "Test description here!";
+	private long duration = 30;
+	private Date validFrom = new Date();
 	private Date validTo;
-	private TEST_STATUS status;
-	private boolean selfRegistration;
+	private TEST_STATUS status = TEST_STATUS.PLANNED;
+	private boolean selfRegistration = true;
 	@ManyToMany
-	private List<Question> questions;
-	private transient int noOfQuestions; 
+	private List<Question> questions = new ArrayList<Question>();
+	private transient int noOfQuestions = 10; 
 	
 	public Integer getId() {
 		return id;
@@ -80,6 +81,12 @@ public class Test {
 	}
 	public void setNoOfQuestions(int noOfQuestions) {
 		this.noOfQuestions = noOfQuestions;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
