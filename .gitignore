@@ -1,7 +1,8 @@
 # .gitignore for talenthunt
 bin
 target
-
+src/main/frontend/dist
+src/main/frontend/npm-debug.log
 # web application files
 /web-app/WEB-INF
 

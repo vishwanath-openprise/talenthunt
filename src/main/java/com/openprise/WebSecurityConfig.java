@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**.woff2").permitAll()
 				.antMatchers("/icon**").permitAll()
 				.antMatchers("/css**").permitAll()
+				.antMatchers("/**.js.map").permitAll()
 				.anyRequest().authenticated()
 				.and().csrf().disable()
 				.formLogin().loginPage("/login_old").defaultSuccessUrl("/dashboard", true).permitAll().and().logout().permitAll();

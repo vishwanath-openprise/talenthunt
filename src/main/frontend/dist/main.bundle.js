@@ -75,7 +75,7 @@ AdminLoginComponent = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardComponent; });
@@ -137,7 +137,7 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(89);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InstructionsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -181,6 +181,8 @@ var _a;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(89);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -192,10 +194,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(http, router) {
+        this.http = http;
+        this.router = router;
     }
     LoginComponent.prototype.ngOnInit = function () {
+    };
+    LoginComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        this.http.post('/talenthunt/login_old', 'username=' + this.userName + '&password=' + this.password, { headers: headers })
+            .subscribe(function (result) {
+            console.log("result", result);
+        }, function (error) {
+            if (error.status == 404) {
+                _this.router.navigate(['dashboard']);
+            }
+        });
     };
     return LoginComponent;
 }());
@@ -205,9 +224,10 @@ LoginComponent = __decorate([
         template: __webpack_require__(377),
         styles: [__webpack_require__(157)]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */]) === "function" && _b || Object])
 ], LoginComponent);
 
+var _a, _b;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
@@ -289,12 +309,12 @@ RegisterationComponent = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__(382);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__(134);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TestComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -491,9 +511,9 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routing__ = __webpack_require__(308);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(306);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__login_login_component__ = __webpack_require__(141);
@@ -568,7 +588,7 @@ AppModule = __decorate([
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_component__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__registeration_registeration_component__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_dashboard_component__ = __webpack_require__(139);
@@ -805,14 +825,14 @@ module.exports = "<div class=\"text-center\">\n  <h2>Available tests</h2>\n</div
 /***/ 376:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"text-center\">\n  <h2>Instructions</h2>\n</div>\n<div class=\"separator-div\"></div>\n<div class=\"large-12 small-12 medium-12 animated fadeInLeft\" style=\"margin-top: 15px;\">\n    <mat-card class=\"light-border\">\n      <mat-card-content>\n        <p>The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.</p>\n      </mat-card-content>\n    </mat-card>\n      <div class=\"flex-container align-center\" style=\"margin-top: 25px;\">\n          <button mat-raised-button color=\"primary\" [routerLink]=\"['/dashboard/test', userId]\">START TEST</button>\n      </div>\n</div>"
+module.exports = "<div class=\"text-center\">\n  <h2>Instructions</h2>\n</div>\n<div class=\"separator-div\"></div>\n<div class=\"large-12 small-12 medium-12 animated fadeInLeft\" style=\"margin-top: 15px;\">\n    <mat-card class=\"light-border\">\n      <mat-card-content>\n        <p>This online test should be strictly used for Openprise Technologies Pvt Ltd.</p>\n        <p>To qualify you must correctly answer at least 25 questions out of 40.</p>\n        <p>No Internet usage allowed for this part of the test.  You must deposit your phones with us.</p>\n        <p>No negative marking and no penalty for guessing.</p>\n        <p>Do NOT copy from Others</p>\n        <p>Please answer based on your understanding, DO NOT discuss with others, DO NOT seek clarifications from anyone.</p>\n      </mat-card-content>\n    </mat-card>\n      <div class=\"flex-container align-center\" style=\"margin-top: 25px;\">\n          <button mat-raised-button color=\"primary\" [routerLink]=\"['/dashboard/test', userId]\">START TEST</button>\n      </div>\n</div>"
 
 /***/ }),
 
 /***/ 377:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-img\">\n    <div style=\"display: flex; align-items: center;height: 100%;justify-content: center;\" class=\"animated fadeInLeft\">\n        <div class=\"medium-7 small-12 large-3\" style=\"min-width: 400px; max-width: 600px;\">\n           <!-- <div class=\"logo\"></div> -->\n            <img src=\"./assets/images/Openprise_Logo.png\" class=\"op-logo\">\n            <mat-card>\n                <h2 style=\"text-align: center\">Login</h2>\n                <form action=\"login_old\" method=\"post\" ngNoForm>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Email\" autofocus name=\"username\">\n                        <i class=\"material-icons small-icons\">person</i>\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Password\" type=\"Password\" name=\"password\">\n                        <i class=\"material-icons small-icons\">lock</i>\n                    </mat-form-field>\n                    <button mat-raised-button\n                        color=\"primary\" style=\"width: 100%\" type=\"submit\">Login\n                    </button>\n                    <div class=\"clear-both\">\n                        <button class=\"float-right color-blue\" mat-button routerLink=\"/register\">Create account</button>\n                    </div>\n                </form>\n            </mat-card>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"login-img\">\n    <div class=\"animated fadeInLeft middle-box\">\n        <div class=\"medium-12 small-12 large-12\">\n           <!-- <div class=\"logo\"></div> -->\n            <img src=\"./assets/images/Openprise_Logo.png\" class=\"op-logo\">\n            <mat-card>\n                <h2 class=\"text-center card-title\">Sign in</h2>\n                <form (ngSubmit) = \"onSubmit()\">\n                    <mat-form-field>\n                        <input matInput placeholder=\"Mobile\" name=\"userName\" [(ngModel)]=\"userName\" autofocus>\n                        <i class=\"material-icons small-icons\">person</i>\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Password\" name=\"password\" [(ngModel)]=\"password\" type=\"Password\">\n                        <i class=\"material-icons small-icons\">lock</i>\n                    </mat-form-field>\n                    <button mat-raised-button\n                        color=\"primary\" style=\"width: 100%\">Sign in\n                    </button>\n                    <div class=\"clear-both\">\n                        <button type=\"submit\" class=\"float-right color-blue\" mat-button>Create account</button>\n                    </div>\n                </form>\n            </mat-card>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -826,7 +846,7 @@ module.exports = "<div class=\"top-bar\">\n  <div class=\"row\">\n\t\t<div class
 /***/ 379:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login-img\">\n    <div style=\"display: flex; align-items: center;height: 100%;justify-content: center;\" class=\"animated fadeInLeft\">\n        <div class=\"medium-7 small-12 large-3\" style=\"min-width: 465px; max-width: 600px;\">    \n            <img src=\"./assets/images/Openprise_Logo.png\" class=\"op-logo\">\n            <mat-card>\n                <h2 style=\"text-align: center\">\n                    <a routerLink=\"/login\" title=\"Back to login\"><i class=\"material-icons\">arrow_back</i></a>\n                    Register\n                </h2>\n                <form>\n                    <mat-form-field>\n                        <input matInput placeholder=\"First name\" autofocus>\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Last name\">\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Email\">\n                    </mat-form-field>                                        \n                    <mat-form-field>\n                        <input matInput placeholder=\"Password\" type=\"Password\">\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Confirm password\" type=\"Password\">\n                    </mat-form-field>\n                    <button mat-raised-button routerLink=\"\"\n                        color=\"primary\" style=\"width: 100%\">Register\n                    </button>\n                </form>\n            </mat-card>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"login-img\">\n    <div style=\"display: flex; align-items: center;height: 100%;justify-content: center;\" class=\"animated fadeInLeft\">\n        <div class=\"medium-7 small-12 large-3\" style=\"min-width: 465px; max-width: 600px;\">    \n            <img src=\"./assets/images/Openprise_Logo.png\" class=\"op-logo\">\n            <mat-card>\n                <h2 style=\"text-align: center\">\n                    <a routerLink=\"/login\" title=\"Back to login\"><i class=\"material-icons\">arrow_back</i></a>\n                    Register\n                </h2>\n                <form>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Full name\" autofocus>\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Mobile (Used as Login ID)\">\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Email\">\n                    </mat-form-field>                                        \n                    <mat-form-field>\n                        <input matInput placeholder=\"Password\" type=\"Password\">\n                    </mat-form-field>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Confirm password\" type=\"Password\">\n                    </mat-form-field>\n                    <button mat-raised-button routerLink=\"\"\n                        color=\"primary\" style=\"width: 100%\">Register\n                    </button>\n                </form>\n            </mat-card>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 

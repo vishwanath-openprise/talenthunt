@@ -1,24 +1,24 @@
 <div class="login-img">
-    <div style="display: flex; align-items: center;height: 100%;justify-content: center;" class="animated fadeInLeft">
-        <div class="medium-7 small-12 large-3" style="min-width: 400px; max-width: 600px;">
+    <div class="animated fadeInLeft middle-box">
+        <div class="medium-12 small-12 large-12">
            <!-- <div class="logo"></div> -->
             <img src="./assets/images/Openprise_Logo.png" class="op-logo">
             <mat-card>
-                <h2 style="text-align: center">Login</h2>
-                <form action="login_old" method="post" ngNoForm>
+                <h2 class="text-center card-title">Sign in</h2>
+                <form (ngSubmit) = "onSubmit()">
                     <mat-form-field>
-                        <input matInput placeholder="Email" autofocus name="username">
+                        <input matInput placeholder="Mobile" name="userName" [(ngModel)]="userName" autofocus>
                         <i class="material-icons small-icons">person</i>
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Password" type="Password" name="password">
+                        <input matInput placeholder="Password" name="password" [(ngModel)]="password" type="Password">
                         <i class="material-icons small-icons">lock</i>
                     </mat-form-field>
                     <button mat-raised-button
-                        color="primary" style="width: 100%" type="submit">Login
+                        color="primary" style="width: 100%">Sign in
                     </button>
                     <div class="clear-both">
-                        <button class="float-right color-blue" mat-button routerLink="/register">Create account</button>
+                        <button type="submit" class="float-right color-blue" mat-button>Create account</button>
                     </div>
                 </form>
             </mat-card>
