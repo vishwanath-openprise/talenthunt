@@ -27,7 +27,7 @@ public class MainController {
 	private UserTest userTest;
 
 	@GetMapping(path = "/dashboard")
-	public @ResponseBody Participant dashBoard(long id) {
+	public @ResponseBody Participant dashBoard(int id) {
 		Participant p = repository.findOne(id);
 		userTest.initialize(p);
 		Participant pClone = null;

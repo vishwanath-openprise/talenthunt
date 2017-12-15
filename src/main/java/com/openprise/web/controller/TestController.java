@@ -32,8 +32,8 @@ public class TestController {
 	
 	@GET
 	@Path("/register/{id}")
-	public @ResponseBody  Iterable<TestParticipant>  register(@PathParam("id") long testId) {
-		service.register(testId);
+	public @ResponseBody  Iterable<TestParticipant>  register(@PathParam("id") int testId) {
+		service.registerForCurrentParticipant(testId);
 		Iterable<TestParticipant> tests = repository.findAll();
 		tests.forEach(it -> {
 			it.setQuestions(null);
@@ -43,7 +43,7 @@ public class TestController {
 	
 	@GET
 	@Path("/{participantTestId}/begin")
-	public @ResponseBody ParticipantQuestion begin(@PathParam("id") long participantTestId) {
+	public @ResponseBody ParticipantQuestion begin(@PathParam("id") int participantTestId) {
 		ParticipantQuestion question = service.beginTest(participantTestId);
 		question.getQuestion().getOptions().forEach(listItem -> {
 			listItem.setValid(false);
@@ -53,7 +53,7 @@ public class TestController {
 	
 	@GET
 	@Path("/{participantTestId}/resume")
-	public ParticipantQuestion resumeTest(long participantTestId) {
+	public ParticipantQuestion resumeTest(int participantTestId) {
 		ParticipantQuestion question = service.resumeTest(participantTestId);
 		return question;
 	}
@@ -126,7 +126,7 @@ public class TestController {
 	
 	@GET
 	@Path("/test/{id}")
-	public @ResponseBody TestParticipant getTest(@PathParam("id") long id) {
+	public @ResponseBody TestParticipant getTest(@PathParam("id") int id) {
 		TestParticipant test = repository.findOne(id);
 		test.setQuestions(null);
 		return test;

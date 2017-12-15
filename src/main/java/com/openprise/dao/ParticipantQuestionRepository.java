@@ -6,7 +6,7 @@ import com.openprise.domain.ParticipantQuestion;
 import com.openprise.domain.TestParticipant;
 
 
-public interface ParticipantQuestionRepository extends CrudRepository<ParticipantQuestion, Long> {
+public interface ParticipantQuestionRepository extends CrudRepository<ParticipantQuestion, Integer> {
 	
 	ParticipantQuestion findByTestParticipantAndQuestionOrder(TestParticipant testParticipant, int order);
 	

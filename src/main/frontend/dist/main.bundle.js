@@ -104,11 +104,11 @@ var DashboardComponent = (function () {
     DashboardComponent.prototype.getStatusClass = function (status) {
         switch (status) {
             case 'PLANNED':
-                return 'disbale-status';
+                return 'planned-status';
             case 'REGISTRATION':
                 return 'active-status';
             case 'COMPLETED':
-                return 'disbale-status';
+                return 'completed-status';
             case 'INACTIVE':
                 return 'disbale-status';
             case 'IN_PROGRESS':
@@ -734,7 +734,7 @@ exports = module.exports = __webpack_require__(24)(false);
 
 
 // module
-exports.push([module.i, ".mat-card{\n    padding: 0px !important;\n}\n\n.card-title{\n    font-family: 'Raleway', sans-serif;\n    font-weight: 400;\n    color: #fff;\n}\n\n.mat-card-content{\n    font-family: 'Roboto Condensed', sans-serif;\n    color: #fff;\n}\n\nh2{\n  font-family: 'Raleway', sans-serif !important;\n  font-weight: 400;\n}\n\n.zoom-in:hover {\n    -webkit-animation-duration: 300ms;\n    animation-duration: 300ms;\n    -webkit-animation-fill-mode: both;\n    animation-fill-mode: both;\n    animation-name: fadeInUp;\n    -webkit-animation-name: fadeInUp;\n    position: relative;\n    z-index: 1;\n}\n\n@-webkit-keyframes fadeInUp {\n    0% {\n         -webkit-transform: translateY(0);\n        transform: translateY(0);       \n\n    }\n\n    100% {\n        -webkit-transform: translateY(-10px);\n        transform: translateY(-10px);\n        box-shadow: 5px 20px 20px 4px #F2F2F2;\n    }\n}\n\n@keyframes fadeInUp {\n    0% {\n        -webkit-transform: translateY(0);\n        transform: translateY(0);\n    }\n\n    100% {\n        -webkit-transform: translateY(-10px);\n        transform: translateY(-10px);\n        box-shadow: 5px 20px 20px 4px #F2F2F2;\n    }\n}\n\n.top-bar-right ul li a{\n    color: #393939;\n    letter-spacing: 2px;\n    font-weight: 800;\n    font-size: 12px;\n}\n\n.active-status{\n    background-color: #20a8d8;\n}\n\n.disbale-status{\n    background-color: #f86c6b;\n}\n\n.progress-status{\n    background-color: #f8cb00;\n}", ""]);
+exports.push([module.i, ".mat-card{\n    padding: 0px !important;\n}\n\n.card-title{\n    font-family: 'Raleway', sans-serif;\n    font-weight: 400;\n    color: #fff;\n}\n\n.mat-card-content{\n    font-family: 'Roboto Condensed', sans-serif;\n    color: #fff;\n}\n\nh2{\n  font-family: 'Raleway', sans-serif !important;\n  font-weight: 400;\n}\n\n.zoom-in:hover {\n    -webkit-animation-duration: 300ms;\n    animation-duration: 300ms;\n    -webkit-animation-fill-mode: both;\n    animation-fill-mode: both;\n    animation-name: fadeInUp;\n    -webkit-animation-name: fadeInUp;\n    position: relative;\n    z-index: 1;\n}\n\n@-webkit-keyframes fadeInUp {\n    0% {\n         -webkit-transform: translateY(0);\n        transform: translateY(0);       \n\n    }\n\n    100% {\n        -webkit-transform: translateY(-10px);\n        transform: translateY(-10px);\n        box-shadow: 5px 20px 20px 4px #F2F2F2;\n    }\n}\n\n@keyframes fadeInUp {\n    0% {\n        -webkit-transform: translateY(0);\n        transform: translateY(0);\n    }\n\n    100% {\n        -webkit-transform: translateY(-10px);\n        transform: translateY(-10px);\n        box-shadow: 5px 20px 20px 4px #F2F2F2;\n    }\n}\n\n.top-bar-right ul li a{\n    color: #393939;\n    letter-spacing: 2px;\n    font-weight: 800;\n    font-size: 12px;\n}\n\n.active-status{\n    background-color: #20a8d8;\n}\n\n.disbale-status{\n    background-color: #f86c6b;\n}\n\n.completed-status{\n    background-color: #52BE80;\n}\n\n.planned-status{\n    background-color: #B2BABB;\n}\n\n.progress-status{\n    background-color: #f8cb00;\n}", ""]);
 
 // exports
 

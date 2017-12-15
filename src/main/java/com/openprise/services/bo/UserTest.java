@@ -31,4 +31,8 @@ public class UserTest {
 	public Participant getUser() {
 		return user;
 	}
+
+	public void setTest(TestParticipant test) {
+		this.test = test;
+	}
 }

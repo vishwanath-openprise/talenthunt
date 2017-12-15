@@ -52,32 +52,32 @@ public class TestManagementController {
 	
 	@GET
 	@Path("/test/{id}")
-	public @ResponseBody Test getTest(@PathParam("id") long id) {
+	public @ResponseBody Test getTest(@PathParam("id") int id) {
 		return repository.findOne(id);
 	}
 	
 	@POST
 	@Path("/{id}/addQuestion")
-	public @ResponseBody Question addQuestion(@PathParam("id") long id, @RequestBody Question question) {
+	public @ResponseBody Question addQuestion(@PathParam("id") int id, @RequestBody Question question) {
 		return service.addQuestion(id, question);
 	}
 	
 	@POST
 	@Path("/{qid}/addChoice")
-	public @ResponseBody Question addChoice(@PathParam("id") long id, @RequestBody Choice choice) {
+	public @ResponseBody Question addChoice(@PathParam("id") int id, @RequestBody Choice choice) {
 		return service.addOption(id, choice);
 	}
 	
 	@POST
 	@Path("/{qid}/addChoices")
-	public @ResponseBody Question addChoice(@PathParam("id") long id, @RequestBody Choice[] choices) {
+	public @ResponseBody Question addChoice(@PathParam("id") int id, @RequestBody Choice[] choices) {
 		return service.addOptions(id, choices);
 	}
 	
 
 	@DELETE
 	@Path("/{id}/{qId}")
-	public @ResponseBody String deleteQuestion(@PathParam("id") long id, @PathParam("qId") long qId) {
+	public @ResponseBody String deleteQuestion(@PathParam("id") int id, @PathParam("qId") int qId) {
 		service.removeQuestion(id, qId);
 		return "DONE";
 	}

@@ -29,7 +29,7 @@ public class TestService {
 	@Autowired
 	private QuestionRepository questionRepository;
 
-	public Question addQuestion(long testId, Question q) {
+	public Question addQuestion(int testId, Question q) {
 
 		Test test = testRepository.findOne(testId);
 
@@ -49,7 +49,7 @@ public class TestService {
 		return q;
 	}
 
-	public void removeQuestion(long testId, long questionId) {
+	public void removeQuestion(int testId, int questionId) {
 		Test test = testRepository.findOne(testId);
 
 		if (test == null) {
@@ -67,7 +67,7 @@ public class TestService {
 		}
 	}
 
-	public Question addOptions(long questionId, Choice[] choices) {
+	public Question addOptions(int questionId, Choice[] choices) {
 		Question q = questionRepository.findOne(questionId);
 		if (q != null) {
 			if (q.getOptions() == null) {
@@ -81,7 +81,7 @@ public class TestService {
 		return q;
 	}
 
-	public Question addOption(long questionId, Choice c) {
+	public Question addOption(int questionId, Choice c) {
 		Question q = questionRepository.findOne(questionId);
 		if (q != null) {
 			if (q.getOptions() == null) {

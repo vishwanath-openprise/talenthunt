@@ -14,9 +14,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.openprise.dao.ParticipantQuestionRepository;
+import com.openprise.dao.ParticipantRepository;
 import com.openprise.dao.ParticipantTestRepository;
 import com.openprise.dao.TestRepository;
 import com.openprise.domain.Choice;
+import com.openprise.domain.Participant;
 import com.openprise.domain.ParticipantQuestion;
 import com.openprise.domain.Question;
 import com.openprise.domain.TEST_STATUS;
@@ -39,15 +41,21 @@ public class ParticipantTestService {
 
 	@Autowired
 	private TestRepository testRepository;
+	
+	@Autowired
+	private ParticipantRepository participantRepository;
 
 	@Inject
-	private UserTest test;
+	private UserTest userTest;
 
-	public TestParticipant register(long testId) {
+	public TestParticipant register(int testId, int participantId) {
 		TestParticipant tp = null;
 		Test test = testRepository.findOne(testId);
+		Participant p = participantRepository.findOne(participantId);
 		if (test != null) {
 			tp = new TestParticipant();
+			tp.setParticipant(p);
+			tp.setTest(test);
 
 			List<Question> qs = new ArrayList<Question>();
 			Collections.copy(qs, test.getQuestions());
@@ -66,8 +74,12 @@ public class ParticipantTestService {
 		}
 		return tp;
 	}
+	
+	public TestParticipant registerForCurrentParticipant(int testId) {
+		return register(testId, userTest.getUser().getId());
+	}
 
-	public void evaludateTestParticipants(long testId) {
+	public void evaludateTestParticipants(int testId) {
 		Test test = testRepository.findOne(testId);
 		if (TEST_STATUS.COMPLETED.equals(test.getStatus())) {
 			Collection<TestParticipant> tps = participantTestRepository.findByTest(test);
@@ -98,36 +110,37 @@ public class ParticipantTestService {
 		}
 	}
 
-	public ParticipantQuestion beginTest(long participantTestId) {
+	public ParticipantQuestion beginTest(int participantTestId) {
 		TestParticipant testParticipant = participantTestRepository.findOne(participantTestId);
 		testParticipant.setStatus(TEST_STATUS.IN_PROGRESS);
 		testParticipant.setStartDate(new Date());
 		testParticipant.setLastUpdated(new Date());
 		testParticipant.setQuestionIndex(0);
 		participantTestRepository.save(testParticipant);
-		// test.setTest(testParticipant);
+		userTest.setTest(testParticipant);
 		return getNextQuestion();
 	}
 
-	public ParticipantQuestion resumeTest(long participantTestId) {
+	public ParticipantQuestion resumeTest(int participantTestId) {
 		TestParticipant testParticipant = participantTestRepository.findOne(participantTestId);
 		testParticipant.setStatus(TEST_STATUS.IN_PROGRESS);
 		testParticipant.setLastUpdated(new Date());
 		participantTestRepository.save(testParticipant);
-		// test.setTest(testParticipant);
+		userTest.setTest(testParticipant);
 		return getNextQuestion();
 	}
 
 	public void endTest() {
-		TestParticipant testParticipant = test.getTest();
+		TestParticipant testParticipant = userTest.getTest();
 		testParticipant.setStatus(TEST_STATUS.COMPLETED);
 		testParticipant.setEndDate(new Date());
 		testParticipant.setLastUpdated(new Date());
+		userTest.setTest(null);
 		participantTestRepository.save(testParticipant);
 	}
 
 	public ParticipantQuestion submitAnAnswer(int questionIndex, int optionIndex) {
-		TestParticipant testParticipant = test.getTest();
+		TestParticipant testParticipant = userTest.getTest();
 		ParticipantQuestion question = testParticipant.getQuestions().get(testParticipant.getQuestionIndex());
 		question.setAnswered(true);
 		question.setAnsweredOpt(question.getQuestion().getOptions().get(optionIndex));
@@ -138,7 +151,7 @@ public class ParticipantTestService {
 	}
 
 	public ParticipantQuestion skipAnAnswer(int questionIndex) {
-		TestParticipant testParticipant = test.getTest();
+		TestParticipant testParticipant = userTest.getTest();
 		ParticipantQuestion question = testParticipant.getQuestions().get(testParticipant.getQuestionIndex());
 		question.setAnswered(false);
 		participantQuestionRepository.save(question);
@@ -148,7 +161,7 @@ public class ParticipantTestService {
 
 	
 	public ParticipantQuestion getNextQuestion() {
-		TestParticipant testParticipant = test.getTest();
+		TestParticipant testParticipant = userTest.getTest();
 		ParticipantQuestion pq = participantQuestionRepository.findByTestParticipantAndQuestionOrder(testParticipant,
 				testParticipant.getQuestionIndex() + 1);
 		testParticipant.setQuestionIndex(pq.getQuestionOrder());
@@ -156,7 +169,7 @@ public class ParticipantTestService {
 	}
 
 	public ParticipantQuestion getPrevQuestion() {
-		TestParticipant testParticipant = test.getTest();
+		TestParticipant testParticipant = userTest.getTest();
 		ParticipantQuestion pq = participantQuestionRepository.findByTestParticipantAndQuestionOrder(testParticipant,
 				testParticipant.getQuestionIndex() - 1);
 		testParticipant.setQuestionIndex(pq.getQuestionOrder());
@@ -164,7 +177,7 @@ public class ParticipantTestService {
 	}
 
 	public ParticipantQuestion getNextPendingQuestion(int index) {
-		TestParticipant testParticipant = test.getTest();
+		TestParticipant testParticipant = userTest.getTest();
 		ParticipantQuestion pq = participantQuestionRepository
 				.findByTestParticipantAndQuestionOrderGreaterThanAndAnsweredNot(testParticipant,
 						testParticipant.getQuestionIndex(), true);
@@ -173,7 +186,7 @@ public class ParticipantTestService {
 	}
 
 	public ParticipantQuestion getPrevPendingQuestion(int index) {
-		TestParticipant testParticipant = test.getTest();
+		TestParticipant testParticipant = userTest.getTest();
 		ParticipantQuestion pq = participantQuestionRepository
 				.findByTestParticipantAndQuestionOrderLessThanAndAnsweredNot(testParticipant,
 						testParticipant.getQuestionIndex(), true);
@@ -182,7 +195,7 @@ public class ParticipantTestService {
 	}
 
 	public ParticipantQuestion getQuestionAt(int index) {
-		TestParticipant testParticipant = test.getTest();
+		TestParticipant testParticipant = userTest.getTest();
 		ParticipantQuestion question = null;
 		if (testParticipant.getQuestions().size() < testParticipant.getQuestionIndex()
 				&& testParticipant.getQuestionIndex() > 0) {

@@ -32,7 +32,7 @@ public class ParticipantController {
 
 	@GET
 	@Path("/{id}")
-	public @ResponseBody Participant getParticipant(@PathParam("id") long id) {
+	public @ResponseBody Participant getParticipant(@PathParam("id") int id) {
 		return repository.findOne(id);
 	}
 
