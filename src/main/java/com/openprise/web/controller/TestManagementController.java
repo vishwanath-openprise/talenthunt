@@ -40,7 +40,12 @@ public class TestManagementController {
 	
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<Test> getAllTests() {
-		return repository.findAll();
+		Iterable<Test> tests = repository.findAll();
+		tests.forEach(it -> {
+			it.setNoOfQuestions(it.getQuestions().size());
+			it.setQuestions(null);
+		});
+		return tests;
 	}
 	
 	@GET

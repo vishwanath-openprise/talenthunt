@@ -31,6 +31,17 @@ public class TestController {
 	private ParticipantTestService service;
 	
 	@GET
+	@Path("/register/{id}")
+	public @ResponseBody  Iterable<TestParticipant>  register(@PathParam("id") long testId) {
+		service.register(testId);
+		Iterable<TestParticipant> tests = repository.findAll();
+		tests.forEach(it -> {
+			it.setQuestions(null);
+		});
+		return tests;
+	}
+	
+	@GET
 	@Path("/{participantTestId}/begin")
 	public @ResponseBody ParticipantQuestion begin(@PathParam("id") long participantTestId) {
 		ParticipantQuestion question = service.beginTest(participantTestId);

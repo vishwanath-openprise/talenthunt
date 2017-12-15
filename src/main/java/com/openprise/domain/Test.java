@@ -25,6 +25,7 @@ public class Test {
 	private boolean selfRegistration;
 	@ManyToMany
 	private List<Question> questions;
+	private transient int noOfQuestions; 
 	
 	public Integer getId() {
 		return id;
@@ -73,6 +74,12 @@ public class Test {
 	}
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
+	}
+	public int getNoOfQuestions() {
+		return noOfQuestions;
+	}
+	public void setNoOfQuestions(int noOfQuestions) {
+		this.noOfQuestions = noOfQuestions;
 	}
 
 }
