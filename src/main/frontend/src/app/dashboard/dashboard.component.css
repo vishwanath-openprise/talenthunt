@@ -84,3 +84,16 @@ h2{
 .progress-status{
     background-color: #f8cb00;
 }
+
+.card-title h4{
+    font-size: 1.44rem;
+}
+.test-card{
+    min-width: 350px;
+    margin: 15px;
+}
+
+.test-status{
+    padding: 5px;
+    font-size: 14px;
+}

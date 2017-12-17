@@ -134,3 +134,9 @@ label{
 .light-border{
     border: 1px solid #c1c1c1 !important;
 }
+
+.ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
