@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import {MatSnackBar} from '@angular/material';
 import { Questions } from './Questions';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-test',
@@ -17,10 +18,16 @@ export class TestComponent implements OnInit {
 
   private _testEndsAt;
   public _countDown;
+  private testId: number;
 
-  constructor(private http: Http, public snackBar: MatSnackBar) { }
+  constructor(private http: Http, public snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit():void {
+
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.testId = params['id'];        //contains the test id.
+    });
+
     // need to import (import 'rxjs/add/operator/toPromise';)
     // this.getQuestion()
     //   .then(questions => this.questions = questions);

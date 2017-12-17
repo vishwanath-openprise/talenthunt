@@ -19,21 +19,25 @@ export class LoginComponent implements OnInit {
 
   }
 
-  openSnackBar() {
-    this.snackBar.open("Invalid credentials.", "Close", {
+  openSnackBar(message):void {
+    this.snackBar.open(message, "Close", {
       duration: 8000,
     });
   }
 
-  onSubmit() {
+  onSubmit(data):void {
+    if(!data.userName || !data.password){
+      this.openSnackBar("Username or password is missing.");
+      return;
+    }
       let headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded');
       this.http.post('/talenthunt/login_old',
-        'username=' + this.userName + '&password=' + this.password,
+        'username=' + data.userName + '&password=' + data.password,
         {headers: headers})
         .subscribe(
           result => {
-            this.openSnackBar();
+            this.openSnackBar("Invalid credentials.");
           	console.log("result",result)
           },
         error =>{

@@ -5,20 +5,20 @@
             <img src="./assets/images/Openprise_Logo.png" class="op-logo">
             <mat-card>
                 <h2 class="text-center card-title">Sign in</h2>
-                <form (ngSubmit) = "onSubmit()">
+                <form #form="ngForm" (ngSubmit) = "onSubmit(form.value)">
                     <mat-form-field>
-                        <input matInput placeholder="Mobile" name="userName" [(ngModel)]="userName" autofocus autocomplete="off">
+                        <input matInput placeholder="Mobile" name="userName" ngModel autofocus autocomplete="off" required>
                         <i class="material-icons small-icons">person</i>
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput placeholder="Password" name="password" [(ngModel)]="password" type="Password">
+                        <input matInput type="Password" placeholder="Password" name="password" ngModel required>
                         <i class="material-icons small-icons">lock</i>
                     </mat-form-field>
-                    <button mat-raised-button
+                    <button type="submit" mat-raised-button
                         color="primary" style="width: 100%">Sign in
                     </button>
                     <div class="clear-both">
-                        <button type="submit" class="float-right color-blue" mat-button>Create account</button>
+                        <button type="button" class="float-right color-blue" mat-button routerLink="/register">Create account</button>
                     </div>
                 </form>
             </mat-card>
