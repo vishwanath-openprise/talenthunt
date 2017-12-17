@@ -15,9 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: Http, private router: Router, private snackBar: MatSnackBar) {  }
   
-  ngOnInit():void {
-
-  }
+  ngOnInit():void {  }
 
   openSnackBar(message):void {
     this.snackBar.open(message, "Close", {
@@ -37,14 +35,14 @@ export class LoginComponent implements OnInit {
         {headers: headers})
         .subscribe(
           result => {
-            this.openSnackBar("Invalid credentials.");
-          	console.log("result",result)
+            this.http.get('/isUserLoggedIn').subscribe(
+              data => { this.router.navigate(['dashboard']); },
+              error => { this.openSnackBar("Username or password is incorrect."); }
+            );
           },
-        error =>{
-          if(error.status == 404){
-            this.router.navigate(['dashboard']);
+          error =>{
+            this.openSnackBar("Unable to login.");
           }
-        }
       );
   }
 
