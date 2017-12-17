@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,16 @@ export class LoginComponent implements OnInit {
   public userName;
   public password;
 
-  constructor(private http: Http, private router: Router) {  }
+  constructor(private http: Http, private router: Router, private snackBar: MatSnackBar) {  }
   
   ngOnInit():void {
 
+  }
+
+  openSnackBar() {
+    this.snackBar.open("Invalid credentials.", "Close", {
+      duration: 8000,
+    });
   }
 
   onSubmit() {
@@ -26,6 +33,7 @@ export class LoginComponent implements OnInit {
         {headers: headers})
         .subscribe(
           result => {
+            this.openSnackBar();
           	console.log("result",result)
           },
         error =>{

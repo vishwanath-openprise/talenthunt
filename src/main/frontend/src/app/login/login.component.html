@@ -7,7 +7,7 @@
                 <h2 class="text-center card-title">Sign in</h2>
                 <form (ngSubmit) = "onSubmit()">
                     <mat-form-field>
-                        <input matInput placeholder="Mobile" name="userName" [(ngModel)]="userName" autofocus>
+                        <input matInput placeholder="Mobile" name="userName" [(ngModel)]="userName" autofocus autocomplete="off">
                         <i class="material-icons small-icons">person</i>
                     </mat-form-field>
                     <mat-form-field>
