@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         {headers: headers})
         .subscribe(
           result => {
-            this.http.get('/isUserLoggedIn').subscribe(
+            this.http.get('/talenthunt/isUserLoggedIn').subscribe(
               data => { this.router.navigate(['dashboard']); },
               error => { this.openSnackBar("Username or password is incorrect."); }
             );

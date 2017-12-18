@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**.js.map").permitAll()
 				.anyRequest().authenticated()
 				.and().csrf().disable()
-				.formLogin().loginPage("/login_old").defaultSuccessUrl("/dashboard", true).permitAll().and().logout().logoutSuccessUrl("/").permitAll();
+				.formLogin().loginPage("/login_old").permitAll().and().logout().logoutSuccessUrl("/").permitAll();
 		 http.authorizeRequests().antMatchers("/").permitAll();
 	}
 
