@@ -87,10 +87,24 @@ export class TestComponent implements OnInit {
   // }
 
   getQuestion() {
-    return this.http.get('./assets/questions.json')
+    return this.http.get('/test/'+ this.testId + '/begin')
         .map(data => {
             data.json();
             return data.json();
     });
-}
+  }
+
+  getNextQuestion(): void{
+    this.nextQuestion().subscribe(
+      data => {
+        this.questions = data;
+      }
+    )
+  }
+
+  nextQuestion(){
+    return this.http.get('/test/getNextQuestion').map(
+      data => { return data.json(); }
+    )
+  }
 }
