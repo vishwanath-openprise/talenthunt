@@ -14,7 +14,7 @@ import com.openprise.domain.Participant;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
-	
+
 	@Autowired
 	private ParticipantRepository repository;
 
@@ -24,15 +24,19 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String name = authentication.getName();
 		String password = authentication.getCredentials().toString();
 
-		Participant p = repository.findByPasswordAndEmailOrMobile(password, name, name);
-		
-		if (p != null) {
+		Participant p = repository.findByPasswordAndEmail(password, name);
 
+		if (p != null) {
 			// use the credentials
 			// and authenticate against the third-party system
 			return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
 		} else {
-			return null;
+			p = repository.findByPasswordAndMobile(password, name);
+			if (p != null) {
+				return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
+			} else {
+				return null;
+			}
 		}
 	}
 
