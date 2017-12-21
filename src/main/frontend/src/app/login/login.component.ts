@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(data):void {
     if(!data.userName || !data.password){
-      this.openSnackBar("Username or password is missing.");
+      this.openSnackBar("Mobile/Email or password is missing.");
       return;
     }
       let headers = new Headers();
