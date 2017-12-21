@@ -6,6 +6,6 @@ import com.openprise.domain.Participant;
 
 public interface ParticipantRepository  extends CrudRepository<Participant, Integer> {
 
-	Participant findByMobileAndPassword(String mobile, String password);
+	Participant findByPasswordAndEmailOrMobile(String password, String mobile, String email);
 	Participant findByMobile(String mobile);
 }

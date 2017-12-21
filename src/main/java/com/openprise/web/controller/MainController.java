@@ -40,7 +40,7 @@ public class MainController {
 	}
 
 	@GetMapping(path = "/isUserLoggedIn")
-	public String isUserLoggedIn() {
+	public  @ResponseBody String isUserLoggedIn() {
 		return String.valueOf(service.isUserAuthenticated());
 	}
 

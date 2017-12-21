@@ -24,7 +24,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String name = authentication.getName();
 		String password = authentication.getCredentials().toString();
 
-		Participant p = repository.findByMobileAndPassword(name, password);
+		Participant p = repository.findByPasswordAndEmailOrMobile(password, name, name);
 		
 		if (p != null) {
 
