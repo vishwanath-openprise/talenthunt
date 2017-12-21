@@ -36,12 +36,12 @@ export class LoginComponent implements OnInit {
         .subscribe(
           result => {
             this.http.get('/talenthunt/main/isUserLoggedIn').subscribe(
-              data => { this.router.navigate(['dashboard']); },
-              error => { this.openSnackBar("Username or password is incorrect."); }
+              data => { if(data)  this.router.navigate(['dashboard']); else   this.openSnackBar("Mobile/Email or password is incorrect.");},
+              error => { this.openSnackBar("Unable to connect to out server, please try again later."); }
             );
           },
           error =>{
-            this.openSnackBar("Unable to login.");
+            this.openSnackBar("Unable to connect to out server, please try again later.");
           }
       );
   }
