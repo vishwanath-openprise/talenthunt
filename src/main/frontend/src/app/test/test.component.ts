@@ -87,7 +87,7 @@ export class TestComponent implements OnInit {
   // }
 
   getQuestion() {
-    return this.http.get('/test/'+ this.testId + '/begin')
+    return this.http.get('/talenthunt/test/'+ this.testId + '/begin')
         .map(data => {
             data.json();
             return data.json();
@@ -103,7 +103,7 @@ export class TestComponent implements OnInit {
   }
 
   nextQuestion(){
-    return this.http.get('/test/getNextQuestion').map(
+    return this.http.get('/talenthunt/test/getNextQuestion').map(
       data => { return data.json(); }
     )
   }
