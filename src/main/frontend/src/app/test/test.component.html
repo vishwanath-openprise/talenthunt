@@ -2,7 +2,7 @@
   <h2>Test 1</h2> 
 </div>
 <div class="separator-div"></div>
-<div class="float-right dyn-timer" *ngIf="_countDown">
+<div class="float-right dyn-timer" *ngIf="_countDown" [ngClass] = "_alertUser ? 'alert-colors': ''">
   <h4 style="margin-bottom: 0px;">{{_countDown}}</h4>
 </div>
 <div class="large-12 small-12 medium-12 animated fadeInLeft" style="margin-top: 15px;">
@@ -19,7 +19,12 @@
 
         </mat-card-content>
         <div class="float-right">
-          <button mat-raised-button color="primary" (click)="getNextQuestion()">Next</button>
+          <span *ngIf="_countDown != false;else buttonSubmit">
+              <button mat-raised-button color="primary" (click)="getNextQuestion()">Next</button>
+          </span>
+          <ng-template #buttonSubmit>
+              <button mat-raised-button color="primary">Submit</button>
+          </ng-template>
         </div>
     </mat-card>
 </div>

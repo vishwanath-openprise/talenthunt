@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import {MatSnackBar} from '@angular/material';
 import { Questions } from './Questions';
 import {ActivatedRoute, Params} from '@angular/router';
+import { fallIn } from 'app/router.animations';
 
 @Component({
   selector: 'app-test',
@@ -18,6 +19,7 @@ export class TestComponent implements OnInit {
 
   private _testEndsAt;
   public _countDown;
+  public _alertUser = false;
   private testId: number;
 
   constructor(private http: Http, public snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) { }
@@ -57,13 +59,14 @@ export class TestComponent implements OnInit {
         }).subscribe((x) => {
             seconds = this.checkSecond(seconds - 1);
             if(seconds == 59) {minutes = minutes-1};
+            if(minutes <= 2)  this._alertUser = true;
+            this._countDown = minutes + " Min : " + seconds + " Sec";
             if(minutes == 0 && seconds == 0) {
+              this._countDown = false;
               timer.unsubscribe();
               this.openSnackBar();
-            };
-            this._countDown = minutes + " Min : " + seconds + " Sec";
-        });  
-        // console.log(this.questions);
+            }
+        });
       }
     );
   }

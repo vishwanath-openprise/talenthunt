@@ -21,7 +21,15 @@
           <p>{{test.test.description}}</p>
           <p>No of questions: {{test.noOfQuestions}}</p>
         </mat-card-content>
-        <button class="float-right" mat-raised-button [routerLink]="['instructions', test.id]">START</button>
+        <button class="float-right" mat-raised-button 
+        [disabled]="test.status == 'COMPLETED' || test.status == 'INACTIVE'"
+        [routerLink]="['instructions', test.id]">
+        <span [ngSwitch]="test.status">
+            <span *ngSwitchCase="'COMPLETED'">View results</span>
+            <span *ngSwitchCase="'IN_PROGRESS'">Resume</span>
+            <span *ngSwitchDefault>Start</span>
+        </span>
+      </button>
       </div>
     </mat-card>
   </div>
